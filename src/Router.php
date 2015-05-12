@@ -77,7 +77,7 @@ class Router {
     public function get() {
         $controller_name = $this->controllerNS . $this->controller;
         $controller = new $controller_name($this);
-        $controller->load();
+        return $controller->load();
     }
     
     /*
