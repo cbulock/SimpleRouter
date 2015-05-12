@@ -6,10 +6,19 @@ php:
  - 5.6
  - 7
  - hhvm
+install:
+ - composer install --prefer-source --dev --no-interaction
+script:
+ - mkdir -p build/logs
+ - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; fi
+ - if [ "$TRAVIS_PHP_VERSION" == 'hhvm' ]; then vendor/bin/phpunit; fi
+after_script:
+ - php vendor/bin/coveralls -v
+ - vendor/bin/test-reporter
 matrix:
-  allow_failures:
-    - php: hhvm
-    - php: 7
+ allow_failures:
+  - php: hhvm
+  - php: 7
 addons:
  code_climate:
-  repo_token: a6f140abf30bbeb703a89b5b27d703b8c34e9d5af3fe3d7a23aa59246d7b7940
+ repo_token: a6f140abf30bbeb703a89b5b27d703b8c34e9d5af3fe3d7a23aa59246d7b7940
