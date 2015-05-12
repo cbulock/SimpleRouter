@@ -1,0 +1,15 @@
+---
+language: php
+php:
+ - 5.4
+ - 5.5
+ - 5.6
+ - 7
+ - hhvm
+matrix:
+  allow_failures:
+    - php: hhvm
+    - php: 7
+addons:
+ code_climate:
+  repo_token: a6f140abf30bbeb703a89b5b27d703b8c34e9d5af3fe3d7a23aa59246d7b7940
